@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lunar Calendar Reminder</title>
+</head>
+
+<body>
+    <form id="lunarForm">
+        <!-- Subject -->
+        <label for="subject">Event name:</label>
+        <input type="text" name="subject" value="Lunar Event">
+        <br>
+
+        <!-- Date -->
+        <label for="lc_date">Lunar date:</label>
+        <br>
+        <label for="lc_month">&nbsp;&nbsp;&nbsp;Month:</label>
+        <input type="number" name="lc_month" min="1" max="13" value="1" required onChange="updateDefaultDesc()">
+        <label for="lc_day">&nbsp;&nbsp;&nbsp;Day:</label>
+        <input type="number" name="lc_day" min="1" max="30" value="1" required onChange="updateDefaultDesc()">
+        <br>
+
+        <!-- Years -->
+        <label for="startYear">Generate reminders from years </label>
+        <input type="number" name="startYear" min="1900" max="2100" value="2000" required>
+        <label for="endYear"> to </label>
+        <input type="number" name="endYear" min="1900" max="2100" value="2000" required>
+        <br> <small>&nbsp;&nbsp;&nbsp;Years are limited from 1900 to 2100, inclusive.</small>
+        <br>
+
+        <!-- Length -->
+        <label for="eventLength">Length of event in days: </label>
+        <input type="number" name="eventLength" min="0" value="0">
+        <br> <small>&nbsp;&nbsp;&nbsp;Enter '0' if the event ends on the same day.</small>
+        <br>
+
+        <!-- Time -->
+        <label for="startYear">From </label>
+        <input type="time" name="startTime">
+        <label for="endTime"> to </label>
+        <input type="time" name="endTime">
+        <br>
+
+        <!-- All Day Event -->
+        <input type="checkbox" name="allDay" value="True">All Day Event?<br>
+        <br>
+
+        <!-- Description -->
+        <label for="desc">Description:</label>
+        <textarea name="desc" value="" onChange="useDefaultDesc=false"></textarea>
+        <br>
+
+        <!-- Location -->
+        <label for="loc">Location:</label>
+        <input type="text" name="loc">
+        <br>
+
+        <!-- Private -->
+        <input type="checkbox" name="priv" value="True">Private event?<br>
+        <br>
+
+        <!-- Submit -->
+        <input type="submit">
+
+
+
+
+    </form>
+
+</body>
+
+
+<script>
+    var formElements = document.getElementById("lunarForm").elements;
+    // Tells whether the default description should be used
+    var useDefaultDesc = true;
+
+    /* On startup: */
+    updateDefaultDesc();
+
+
+    function updateDefaultDesc() {
+        //update the description with a default message
+        if (useDefaultDesc) {
+            let lunarMonth = formElements.lc_month.value;
+            let lunarDay = formElements.lc_day.value;
+
+            formElements.desc.value = `Lunar Calendar: ${lunarMonth}/${lunarDay} converted to Gregorian`;
+        }
+    }
+</script>
+
+
+</html>
