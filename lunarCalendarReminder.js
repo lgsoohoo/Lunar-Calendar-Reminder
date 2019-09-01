@@ -46,7 +46,7 @@ let lunarDay = 1;
 
 // Note: This program is limited to years 1900 to 2100
 let startYear = 2019; // Year to start generating event reminders (inclusive)
-let endYear = 2019 + 88; // Year to stop generating event reminders (inclusive)
+let endYear = 2088; // Year to stop generating event reminders (inclusive)
 
 // Event Details:
 // For more info, see: https://support.google.com/calendar/answer/37118
@@ -56,7 +56,8 @@ let eventDetails = [
     "", // Start Time - The time the event begins. Unnecessary if an 'All Day Event'. Example: 10:00 AM
     "", // End Time - The time the event ends. Unnecessary if an 'All Day Event'. Example: 1:00 PM
     "True", // All Day Event - Whether the event is an all-day event. Enter `True` if it is an all-day event, and `False` if it isn't.
-    `Lunar Calendar: ${lunarMonth}/${lunarDay} converted to Gregorian`, // Description - Description or notes about the event. Example: 50 multiple choice questions and two essay questions
+    `Lunar Calendar: ${lunarMonth}/${lunarDay} converted to Gregorian`,
+    // Description - Description or notes about the event. Don't write the end year in the description. Example: 50 multiple choice questions and two essay questions
     "", // Location - The location for the event. Example: "Columbia, Schermerhorn 614"
     "True", // Private - Whether the event should be marked private. Enter `True` if the event is private, and `False` if it isn't.
     0, // Event Length - Number of days the event lasts (after the start date). Enter `0` if the event is only for that one day.
@@ -220,6 +221,21 @@ function lunarToGregorian(varYear, varMonth, varDay) {
 
 } // end lunarToGregorian()
 
+// Ensure all HTTP responses have been received before printing
+// This works assuming they didn't put the end year in their description
+function printCSVFile() {
+    if (!csvFile.includes(endYear)) {
+        console.log("Waiting for remaining HTTP responses...")
+        setTimeout(function() {
+            // Try and wait for the remaining HTTP responses
+            printCSVFile()
+        }, 1500);
+    } else {
+        console.log(csvFile)
+    }
+
+}
+
 
 // Program Body ========================================
 
@@ -229,7 +245,7 @@ if (startYear < 1900 || endYear > 2100) {
     console.log(`Error: Start Year is after End Year.\nEntered years: ${startYear} to ${endYear}.`);
 } else {
 
-    let printCSVDelayLength = (endYear - startYear + 1) * httpDelayLength * 1.5;
+    let printCSVDelayLength = (endYear - startYear + 1) * httpDelayLength * 1.25;
     if (printCSVDelayLength < 2000) {
         // delay must be at least 2000ms/2sec
         printCSVDelayLength = 2000;
@@ -248,10 +264,12 @@ if (startYear < 1900 || endYear > 2100) {
         // Each request should be roughly (httpDelayLength/1000) seconds after the previous
     }
 
-    setTimeout(function() {
-        // Print CSV file data after all HTTP requests have (probably) finished
-        // Dont print if we got a zero status earlier
-        neverZeroStatus && console.log(csvFile)
-    }, printCSVDelayLength);
+    if (neverZeroStatus) {
+        setTimeout(function() {
+            // initial longer delay to wait for HTTP responses.
+            // if not all responses are received, the function will wait before printing
+                printCSVFile();
+            }, printCSVDelayLength);
 
-}
+        }
+    }
