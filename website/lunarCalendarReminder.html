@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<meta charset="utf-8" /> 
+<html>
+  <head>
+    <title>Lunar Calendar Reminder</title>
+  </head>
+
+  <body>
+    <form id="lunarForm">
+      <!-- Subject -->
+      <label for="subject">Event name:</label>
+      <input type="text" name="subject" value="Lunar Event" />
+      <br />
+
+      <!-- Date -->
+      <label for="lc_date">Lunar date:</label>
+      <br />
+      <label for="lc_month">&nbsp;&nbsp;&nbsp;Month:</label>
+      <input
+        type="number"
+        name="lc_month"
+        min="1"
+        max="13"
+        value="1"
+        required
+      />
+      <label for="lc_day">&nbsp;&nbsp;&nbsp;Day:</label>
+      <input type="number" name="lc_day" min="1" max="30" value="1" required />
+
+      <br />
+      <!-- Leap Year -->
+      <input type="checkbox" name="lc_leap" value="False" />Leap Year?<br />
+      <br />
+
+      <!-- Years -->
+      <label for="startYear">Generate reminders from years </label>
+      <input
+        type="number"
+        name="startYear"
+        min="1900"
+        max="2100"
+        value="2000"
+        required
+      />
+      <label for="endYear"> to </label>
+      <input
+        type="number"
+        name="endYear"
+        min="1900"
+        max="2100"
+        value="2050"
+        required
+      />
+      <br />
+      <small
+        >&nbsp;&nbsp;&nbsp;Years are limited from 1900 to 2100,
+        inclusive.</small
+      >
+      <br />
+
+      <!-- Length -->
+      <label for="eventLength">Length of event in days: </label>
+      <input type="number" name="eventLength" min="0" value="0" />
+      <br />
+      <small
+        >&nbsp;&nbsp;&nbsp;Enter '0' if the event ends on the same day.</small
+      >
+      <br />
+
+      <!-- Time -->
+      <label for="startYear">From </label>
+      <input type="time" name="startTime" />
+      <label for="endTime"> to </label>
+      <input type="time" name="endTime" />
+      <br />
+
+      <!-- All Day Event -->
+      <input type="checkbox" name="allDay" checked="checked" value="True" />All
+      Day Event?<br />
+      <br />
+
+      <!-- Description -->
+      <label for="desc">Description:</label>
+      <textarea name="desc" value=""></textarea>
+      <br />
+
+      <!-- Location -->
+      <label for="loc">Location:</label>
+      <input type="text" name="loc" />
+      <br />
+
+      <!-- Private -->
+      <input type="checkbox" name="priv" checked="checked" value="True" />Private event?<br />
+      <br />
+
+      <!-- File type -->
+      <input
+        type="radio"
+        name="fileType"
+        checked="checked"
+        value="csv"
+      />CSV<br />
+      <input type="radio" name="fileType" value="ical" />iCal<br />
+
+      <br />
+
+      <!-- Download -->
+      <!-- Use a button instead of submitting form so that it doesn't refresh page/users lose progress -->
+      <input type="button" onClick="run()" value="Download" />
+    </form>
+  </body>
+
+  <script type="text/javascript" src="./isee15_converter.js"></script>
+  <script type="text/javascript" src="./lcr_form.js"></script>
+  <script type="text/javascript" src="./lcr_convert.js"></script>
+  <script type="text/javascript" src="./lcr_run.js"></script>
+  <script type="text/javascript" src="./lcr_csv.js"></script>
+
+  <script>
+    function run() {
+      lcr_run_go();
+    }
+  </script>
+</html>
