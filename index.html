@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Programming Projects</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+
+  <body class="is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="/index.html">Lucas Soohoo</a></h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <!-- <li><a href="#">About Me</a></li> -->
+            <li>
+              <a href="/programmingProjects.html">Programming Projects</a>
+            </li>
+            <!-- <li>
+            <a href="#" class="icon fa-angle-down">Media</a>
+            <ul>
+              <li><a href="#">Blog Posts</a></li>
+              <li><a href="#">Podcast</a></li>
+              <li><a href="#">Video</a></li>
+            </ul>
+          </li> -->
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main -->
+      <section id="main" class="container">
+        <header>
+          <h2>Lunar Calendar Reminder Generator</h2>
+          <h4>By: Lucas Soohoo</h4>
+          <h4>
+            Need to remember a lunar calendar birthday or event? <br> Use this generator to convert the date and upload to your Google or Apple Calendar!
+          </h4>
+        </header>
+        <div class="row">
+          <div class="col-12">
+            <!-- Form -->
+            <section class="box">
+              <!-- <h3>Form</h3> -->
+              <form method="post" action="javascript:run_lcr()" id="lunarForm">
+                <!-- Event Title -->
+                <div class="row gtr-uniform gtr-50">
+                  <div class="col-12 col-12-mobilep">
+                    <input
+                      type="text"
+                      name="subject"
+                      value=""
+                      placeholder="Event Title"
+                      required
+                    />
+                  </div>
+
+                  <!-- Lunar Date -->
+                  <div class="col-4 col-12-mobilep">
+                    <label for="lc_month">Lunar Month:</label>
+                    <input
+                      type="number"
+                      name="lc_month"
+                      min="1"
+                      max="13"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-4 col-12-mobilep">
+                    <label for="lc_day">Lunar Day:</label>
+                    <input
+                      type="number"
+                      name="lc_day"
+                      min="1"
+                      max="31"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-4 col-12-mobilep">
+                    <br />
+                    <input
+                      type="checkbox"
+                      id="lc_leap"
+                      onClick="checkboxReverse('lc_leap')"
+                      name="lc_leap"
+                      value="False"
+                    />
+                    <label for="lc_leap">Lunar Leap Year?</label>
+                  </div>
+
+                  <!-- Event Length -->
+                  <div class="col-12 col-12-mobilep">
+                    <h4>
+                      Length of event in days (Enter '1' if the event ends on
+                      the same day):
+                    </h4>
+                    <input type="number" name="eventLength" min="1" value="1" />
+                  </div>
+
+                  <!-- Generate Year Range -->
+                  <div class="col-12 col-12-mobilep">
+                    <h4>Generate reminders for years (inclusive):</h4>
+                  </div>
+
+                  <div class="col-5 col-5-mobilep">
+                    <input
+                      type="number"
+                      name="startYear"
+                      id="startYear"
+                      min="1900"
+                      max="2100"
+                      required
+                    />
+                  </div>
+                  <div class="col-2 col-2-mobilep">
+                    <p>to</p>
+                  </div>
+                  <div class="col-5 col-5-mobilep">
+                    <input
+                      type="number"
+                      name="endYear"
+                      min="1900"
+                      max="2100"
+                      required
+                    />
+                  </div>
+
+                  <!-- All Day Event -->
+                  <div class="col-12 col-12-mobilep">
+                    <input
+                      type="checkbox"
+                      id="allDay"
+                      onClick="allDayFlip()"
+                      name="allDay"
+                      checked="checked"
+                      value="True"
+                    />
+                    <label for="allDay">All Day Event?</label>
+                  </div>
+
+                  <!-- Event Time -->
+                  <div id="eventTime" style="display:none">
+                    <div class="col-12 col-12-mobilep">
+                      <h4>Event start and end time:</h4>
+                    </div>
+                    <div class="col-5 col-5-mobilep">
+                      <input type="time" name="startTime" />
+                    </div>
+                    <div class="col-2 col-2-mobilep">
+                      <p>to</p>
+                    </div>
+                    <div class="col-5 col-5-mobilep">
+                      <input type="time" name="endTime" />
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+                  <div class="col-12">
+                    <textarea
+                      name="desc"
+                      value=""
+                      placeholder="Description"
+                    ></textarea>
+                  </div>
+
+                  <!-- Location -->
+                  <div class="col-12">
+                    <input type="text" name="loc" placeholder="Location" />
+                  </div>
+
+                  <!-- Private Event -->
+                  <div class="col-12 col-12-mobilep">
+                    <input
+                      type="checkbox"
+                      id="priv"
+                      onClick="checkboxReverse('priv')"
+                      name="priv"
+                      checked="checked"
+                      value="True"
+                    />
+                    <label for="priv">Private Event?</label>
+                  </div>
+
+                  <!-- File Format -->
+                  <div class="col-12 col-12-mobilep">
+                    <br />
+                    <h4>Download File Format:</h4>
+                  </div>
+                  <div class="col-4 col-12-narrower">
+                    <input
+                      type="radio"
+                      id="priority-low"
+                      name="fileType"
+                      value="csv"
+                      checked
+                    />
+                    <label for="priority-low">CSV</label>
+                  </div>
+                  <div class="col-4 col-12-narrower">
+                    <input
+                      type="radio"
+                      id="priority-normal"
+                      name="fileType"
+                      value="ical"
+                    />
+                    <label for="priority-normal">iCal(Currently unsupported)</label>
+                  </div>
+
+                  <!-- end -->
+
+                  <div class="col-12">
+                    <ul class="actions">
+                      <li>
+                        <input
+                          type="submit"
+                          value="Generate"
+                        />
+                      </li>
+                      <li><input type="reset" value="Reset" class="alt" /></li>
+                    </ul>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <!-- <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li> -->
+          <li>
+            <a href="https://github.com/lgsoohoo" class="icon fa-github"
+              ><span class="label">Github</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/channel/UCbZdh6w4FhFPct_jDTSQ_tA"
+              class="icon fa-youtube-play"
+              ><span class="label">YouTube</span></a
+            >
+          </li>
+
+          <!-- <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Lucas Soohoo. All rights reserved.</li>
+          <li>
+            Design: <a href="https://html5up.net/alpha">Alpha</a> by
+            <a href="https://html5up.net/">HTML5 UP</a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Website Template Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Lunar Calendar Reminder Scripts -->
+    <script type="text/javascript" src="lcr_website_js/isee15_converter.js"></script>
+    <script type="text/javascript" src="lcr_website_js/lcr_form.js"></script>
+    <script type="text/javascript" src="lcr_website_js/lcr_convert.js"></script>
+    <script type="text/javascript" src="lcr_website_js/lcr_run.js"></script>
+    <script type="text/javascript" src="lcr_website_js/lcr_csv.js"></script>
+
+    <script>
+      /**
+       * Flip checkbox value from True <--> False
+       * Param: id - checkbox's id
+       **/
+      function checkboxReverse(id) {
+        let element = document.getElementById(id);
+        let boolVal = element.value;
+
+        if (boolVal == "True") {
+          element.value = "False";
+        } else {
+          element.value = "True";
+        }
+      }
+
+      /**
+       * Flips allDay's value
+       * Hides event time picker
+       **/
+      function allDayFlip() {
+        //flip value
+        checkboxReverse("allDay");
+
+        // show/hide event time picker
+        let timePicker = document.getElementById("eventTime");
+        let allDay = document.getElementById("allDay");
+
+        if (allDay.value == "True") {
+          timePicker.style = "display:none";
+        } else {
+          timePicker.style = "";
+        }
+      }
+
+      //Use current year as starting year default:
+      let todayDate = new Date();
+      document.getElementById("startYear").value = todayDate.getFullYear();
+    </script>
+  </body>
+</html>
