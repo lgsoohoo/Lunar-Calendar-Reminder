@@ -1,4 +1,4 @@
-function lcr_run_go() {
+function run_lcr() {
   /*     =====  <Setup>  ======     */
 
   let importedDates = importDates();
@@ -41,8 +41,11 @@ function lcr_run_go() {
 
   let filetype = document.getElementById("lunarForm").elements.fileType.value;
 
-  let fileName =
-    "lunarReminder_" + lunarMonth + "_" + lunarDay + "." + filetype;
+  // Take event subject and replace all non-alphanumeric with an underscore
+  // https://stackoverflow.com/a/8485137
+  let title = eventDetails[0].replace(/[^a-z0-9]/gi, "_").toLowerCase();
+
+  let fileName = title + "_calendar_reminder." + filetype;
   let fileContents;
 
   switch (filetype) {

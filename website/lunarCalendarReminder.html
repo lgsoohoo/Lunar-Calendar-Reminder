@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta charset="utf-8" /> 
+<meta charset="utf-8" />
 <html>
   <head>
     <title>Lunar Calendar Reminder</title>
@@ -29,7 +29,13 @@
 
       <br />
       <!-- Leap Year -->
-      <input type="checkbox" name="lc_leap" value="False" />Leap Year?<br />
+      <input
+        type="checkbox"
+        id="lc_leap"
+        onClick="checkboxReverse('lc_leap')"
+        name="lc_leap"
+        value="False"
+      />Leap Year?<br />
       <br />
 
       <!-- Years -->
@@ -60,10 +66,10 @@
 
       <!-- Length -->
       <label for="eventLength">Length of event in days: </label>
-      <input type="number" name="eventLength" min="0" value="0" />
+      <input type="number" name="eventLength" min="1" value="1" />
       <br />
       <small
-        >&nbsp;&nbsp;&nbsp;Enter '0' if the event ends on the same day.</small
+        >&nbsp;&nbsp;&nbsp;Enter '1' if the event ends on the same day.</small
       >
       <br />
 
@@ -75,8 +81,14 @@
       <br />
 
       <!-- All Day Event -->
-      <input type="checkbox" name="allDay" checked="checked" value="True" />All
-      Day Event?<br />
+      <input
+        type="checkbox"
+        id="allDay"
+        onClick="checkboxReverse('allDay')"
+        name="allDay"
+        checked="checked"
+        value="True"
+      />All Day Event?<br />
       <br />
 
       <!-- Description -->
@@ -90,7 +102,14 @@
       <br />
 
       <!-- Private -->
-      <input type="checkbox" name="priv" checked="checked" value="True" />Private event?<br />
+      <input
+        type="checkbox"
+        id="priv"
+        onClick="checkboxReverse('priv')"
+        name="priv"
+        checked="checked"
+        value="True"
+      />Private event?<br />
       <br />
 
       <!-- File type -->
@@ -106,7 +125,7 @@
 
       <!-- Download -->
       <!-- Use a button instead of submitting form so that it doesn't refresh page/users lose progress -->
-      <input type="button" onClick="run()" value="Download" />
+      <input type="button" onClick="run_lcr()" value="Download" />
     </form>
   </body>
 
@@ -117,8 +136,20 @@
   <script type="text/javascript" src="./lcr_csv.js"></script>
 
   <script>
-    function run() {
-      lcr_run_go();
+    /**
+     * Flip checkbox value from True <--> False
+     * Param: id - checkbox's id
+     **/
+    function checkboxReverse(id) {
+      let element = document.getElementById(id);
+      let boolVal = element.value;
+
+      if (boolVal == "True") {
+        element.value = "False";
+      } else {
+        element.value = "True";
+      }
+      console.log(`${id} is now ${element.value}`);
     }
   </script>
 </html>

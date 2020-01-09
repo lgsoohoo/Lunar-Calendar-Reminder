@@ -2,12 +2,12 @@
 // Returns: array in format: [lunar month, lunar day, start year, end year]
 function importDates() {
   let formElements = document.getElementById("lunarForm").elements;
+  let isLeap = formElements.lc_leap.value == "True" ? true : false;
 
   let dates = [
     Number(formElements.lc_month.value),
     Number(formElements.lc_day.value),
-    Number(formElements.lc_leap.value),
-
+    isLeap,
     Number(formElements.startYear.value),
     Number(formElements.endYear.value)
   ];
@@ -27,7 +27,8 @@ function importEventDetails() {
     formElements.desc.value,
     formElements.loc.value,
     formElements.priv.value,
-    Number(formElements.eventLength.value)
+    Number(formElements.eventLength.value)-1
+    //Program counts in additional days after the start of the event
   ];
 
   return resForm;
