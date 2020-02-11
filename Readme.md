@@ -12,17 +12,17 @@ Trying to remember a specific yearly Lunar Calendar event can be a pain, since a
 3. Click "Generate" and save the file on your computer
 4. Import the file onto your digital calendar using one of the following methods:
 
-To import into Google Calendar:
-    1. Open Google Calendar and open the Settings menu by clicking on the gear icon in the upper left
-    2. Select "Import & Export" from the menu on the right
-    3. Under the "Import" header, click on "Select file from your computer," and navigate to the file you downloaded
-    4. Choose which calendar to import the events into by using the "Add to calendar" drop-down menu
-    5. Press "Import"
+##### To import into Google Calendar:
+1. Open Google Calendar and open the Settings menu by clicking on the gear icon in the upper left
+2. Select "Import & Export" from the menu on the right
+3. Under the "Import" header, click on "Select file from your computer," and navigate to the file you downloaded
+4. Choose which calendar to import the events into by using the "Add to calendar" drop-down menu
+5. Press "Import"
 
-To import into MS Outlook (Web):
-    1. On the left side, select "Add calendar". If you do not see it, press the "hamburger menu button" next to the "New event" button
-    2. Click on "Upload from file" from the screen that appears
-    3. Drag your downloaded file or use the "Browse" button
-    4. Select which calendar to import to using the drop-down menu and press "Import"
+##### To import into MS Outlook (Web):
+1. On the left side, select "Add calendar". If you do not see it, press the "hamburger menu button" next to the "New event" button
+2. Click on "Upload from file" from the screen that appears
+3. Drag your downloaded file or use the "Browse" button
+4. Select which calendar to import to using the drop-down menu and press "Import"
 
 Complete accuracy of this program is not guaranteed
