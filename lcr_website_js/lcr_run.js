@@ -59,9 +59,11 @@ function run_lcr() {
   switch (filetype) {
     case "csv":
       fileContents = generateCSV(eventDetails, convertedDates);
+      downloadFile(fileName, fileContents);
       break;
     case "ical":
       fileContents = "iCal not supported yet.";
+      alert(`iCal not supported yet`);
       break;
     default:
       //unknown filetype
@@ -69,5 +71,4 @@ function run_lcr() {
       alert(`Error, unknown filetype (${filetype}) selected.`);
   }
 
-  downloadFile(fileName, fileContents);
 }

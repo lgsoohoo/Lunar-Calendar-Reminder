@@ -7,7 +7,7 @@ Trying to remember a specific yearly Lunar Calendar event can be a pain, since a
 "Lunar Calendar Reminder" solves this problem by calculating the Gregorian equivalents for your Lunar Calendar event, and generating a custom CSV or iCal calendar that can be imported into your Google Calendar (or any program that can import a CSV or iCal file). Once imported, you can use your calendar program to set reminders for the event!
 
 ## How do I use this?
-1. Go to the [Lunar Calendar Reminder website](lgsoohoo.github.io/lunarCalendarReminder) and fill in the information about your event
+1. Go to the [Lunar Calendar Reminder website](https://lgsoohoo.github.io/Lunar-Calendar-Reminder/) and fill in the information about your event
 2. Choose either the "CSV" (Google Calendar/MS Outlook) or "iCal" file format
 3. Click "Generate" and save the file on your computer
 4. Import the file onto your digital calendar using one of the following methods:
