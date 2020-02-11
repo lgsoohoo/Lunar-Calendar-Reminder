@@ -1,5 +1,13 @@
-// Import lunar month/day and start/end year from html form
-// Returns: array in format: [lunar month, lunar day, start year, end year]
+/**
+ * lcr_form.js
+ * This file contains functions for interacting with the HTML form
+ */
+
+/**
+ * Imports the lunar month/day and start/end year from the HTML form
+ * 
+ * @returns {Array in format: [Lunar month, Lunar day, Start year, End year]}
+ */
 function importDates() {
   let formElements = document.getElementById("lunarForm").elements;
   let isLeap = formElements.lc_leap.value == "True" ? true : false;
@@ -15,7 +23,11 @@ function importDates() {
   return dates;
 }
 
-// Import event details from html form
+/**
+ * Imports the event details from the HTML form
+ * 
+ * @returns {Array containing details about the event. Specified in the setup section of 'lcr_run.js'}
+ */
 function importEventDetails() {
   let formElements = document.getElementById("lunarForm").elements;
 
@@ -29,16 +41,18 @@ function importEventDetails() {
     formElements.priv.value,
     Number(formElements.eventLength.value)-1
     //Program counts in additional days after the start of the event
+    //This is the difference in JS and HTML sides
   ];
 
   return resForm;
 }
 
-/*
-    Download a file
-    Param:  fileName - name of download file (including extension)
-            fileContents - contents of the file
-*/
+/**
+ * Create web browser window to download file
+ * 
+ * @param {name of download file (including extension)} fileName 
+ * @param {contents of the file} fileContents 
+ */
 function downloadFile(fileName, fileContents) {
   // https://stackoverflow.com/a/18197341
   let downloadElement = document.createElement("a");

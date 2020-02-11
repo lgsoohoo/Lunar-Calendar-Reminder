@@ -1,6 +1,7 @@
 /**
  * Created by isee15 on 15/1/14.
  * 
+ * This file is copied from Github user 'isee15' and can be found as part of the project linked below.
  * https://github.com/isee15/Lunar-Solar-Calendar-Converter
  * https://raw.githubusercontent.com/isee15/Lunar-Solar-Calendar-Converter/master/Javascript/LunarSolarConverter.js
  */
